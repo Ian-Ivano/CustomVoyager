@@ -7,3 +7,16 @@ SPACE_CADET_ENABLE = no
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 LAYER_LOCK_ENABLE = yes
+
+
+
+
+
+
+
+
+
+
+
+SRC += features/sentence_case.c
+SRC += features/achordion.c
