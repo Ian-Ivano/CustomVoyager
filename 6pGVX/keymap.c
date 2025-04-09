@@ -1,7 +1,13 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/achordion.h" //custom feature
+#include "features/sentence_case.h" //custom feature
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
+
+void housekeeping_task_user(void) {
+  achordion_task();
+}
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -79,7 +85,10 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+  if (!process_achordion(keycode, record)) { return false; }//achordion implentation
+  if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
+
+switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_LBRC)SS_DELAY(100)  SS_TAP(X_RBRC)SS_DELAY(100)  SS_TAP(X_LEFT));
