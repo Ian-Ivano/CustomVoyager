@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM combo0[] = { MT(MOD_LSFT, KC_T), MT(MOD_RSFT, KC_N), COMBO_END};
 const uint16_t PROGMEM combo1[] = { ALL_T(KC_F), KC_P, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_Y, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_Y, ALL_T(KC_U), COMBO_END};
 const uint16_t PROGMEM combo3[] = { MT(MOD_RSFT, KC_N), MT(MOD_RGUI, KC_E), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
