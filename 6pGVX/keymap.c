@@ -42,7 +42,7 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
-#define MAGIC LT_(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
+#define MAGIC LT(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
 #define DUAL_FUNC_0 LT(27, KC_F1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
