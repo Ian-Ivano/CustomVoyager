@@ -2,7 +2,6 @@
 #include "version.h"
 #include "features/achordion.h" //custom feature
 #include "features/sentence_case.h" //custom feature
-#define LT_AREP LT_(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -43,6 +42,7 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
+#define MAGIC LT_(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
 #define DUAL_FUNC_0 LT(27, KC_F1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_Q,           KC_W,           ALL_T(KC_F),    KC_P,           KC_B,                                           KC_J,           KC_L,           ALL_T(KC_U),    KC_Y,           KC_SCLN,        KC_TRANSPARENT, 
     KC_TRANSPARENT, LT(1,KC_A),     MT(MOD_LALT, KC_R),MT(MOD_LGUI, KC_S),MT(MOD_LSFT, KC_T),KC_G,                                           LT(4,KC_M),     MT(MOD_RSFT, KC_N),MT(MOD_RGUI, KC_E),MT(MOD_RALT, KC_I),LT(1,KC_O),     KC_QUOTE,       
     KC_TRANSPARENT, MT(MOD_LCTL, KC_Z),KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           LT(3,KC_H),     TD(DANCE_1),    KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_TRANSPARENT, 
-                                                    KC_SPACE,       LT(2,KC_TAB),                                   QK_REP, LT_AREP
+                                                    KC_SPACE,       LT(2,KC_TAB),                                   QK_REP, MAGIC
   ),
   [1] = LAYOUT_voyager(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
@@ -97,7 +97,7 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
-  if (keycode == LT_AREP) { return false; }
+  if (keycode == MAGIC) { return false; }
   return true;
 }//for implementation of tap-hold Alternate Repeat Key
 
@@ -121,7 +121,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
 
 switch (keycode) {
-    case LT_AREP:  // 2nd layer on hold, Alternate Repeat Key on tap.
+    case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
       if (record->tap.count) {  // On tap.
         alt_repeat_key_invoke(&record->event);  // Alternate Repeat the last key.
         return false;  // Skip default handling.
