@@ -95,12 +95,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo3, KC_ENTER),
 };
 
-bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
-                            uint8_t* remembered_mods) {
-  if (keycode == MAGIC) { return false; }
-  return true;
-}//for implementation of tap-hold Alternate Repeat Key
-
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_A: return M_TION;
@@ -114,7 +108,11 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_TRNS;
 }//for implementaion of tap-hold Alternate Repeat key
 
-
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
+                            uint8_t* remembered_mods) {
+  if (keycode == MAGIC) { return false; }
+  return true;
+}//for implementation of tap-hold Alternate Repeat Key
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }//achordion implentation
