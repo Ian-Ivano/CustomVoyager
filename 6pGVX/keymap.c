@@ -10,11 +10,11 @@ void housekeeping_task_user(void) {
 }
 
 enum custom_keycodes {
-  M_TION = ML_SAFE_RANGE,
+  M_TN = ML_SAFE_RANGE,
   M_SION,
-  M_TTHE,
+  M_THE_1,
   M_WHAT,
-  M_THE,//personal custom_keycodes end in this line
+  M_THE_2,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -97,11 +97,11 @@ combo_t key_combos[COMBO_COUNT] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_A: return M_TION;
+        case KC_A: return M_TN;
         case KC_S: return M_SION;
-        case KC_T: return M_TTHE; 
+        case KC_T: return M_THE_1; 
         case KC_W: return M_WHAT; 
-        case KC_SPC: return M_THE; 
+        case KC_SPC: return M_THE_2; 
 
     }
 
@@ -119,7 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
 
 switch (keycode) {
-    case M_TION: 
+    case M_TN: 
     if(record->event.pressed){
         SEND_STRING(/*a*/"tion");
     } 
@@ -129,7 +129,7 @@ switch (keycode) {
         SEND_STRING(/*s*/"ion");
     }
     break; //pressing s then Alt Rep gives "sion"
-    case M_TTHE:
+    case M_THE_1:
     if(record->event.pressed){
         SEND_STRING(/*t*/"he");
     } 
@@ -139,7 +139,7 @@ switch (keycode) {
         SEND_STRING(/*w*/"hat");
     } 
     break; //pressing w then Alt Rep gives "what"
-    case M_THE:
+    case M_THE_2:
     if(record->event.pressed){
         SEND_STRING(/*space*/"the");
     } 
