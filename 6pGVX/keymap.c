@@ -97,9 +97,9 @@ combo_t key_combos[COMBO_COUNT] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_A: return M_TN;
-        case KC_S: return M_SION;
-        case KC_T: return M_THE_1; 
+        case LT(1,KC_A): return M_TN;
+        case MT(MOD_LGUI, KC_S): return M_SION;
+        case MT(MOD_LSFT, KC_T): return M_THE_1; 
         case KC_W: return M_WHAT; 
         case KC_SPC: return M_THE_2; 
 
