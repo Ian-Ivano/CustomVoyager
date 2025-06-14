@@ -121,17 +121,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
 
 switch (keycode) {
+    case M_TION: SEND_STRING(/*a*/"tion"); break; // pressing a then Alt Rep gives "ation"
+    case M_SION: SEND_STRING(/*s*/"ion"); break; //pressing s then Alt Rep gives "sion"
+    case M_TTHE: SEND_STRING(/*t*/"he"); break; //pressing t then Alt Rep gives "the"
+    case M_WHAT: SEND_STRING(/*w*/"hat"); break; //pressing w then Alt Rep gives "what"
+    case M_THE: SEND_STRING(/*space*/"the"); break; //pressing space then Alt Rep gives "the"
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
       if (record->tap.count) {  // On tap.
         alt_repeat_key_invoke(&record->event);  // Alternate Repeat the last key.
         return false;  // Skip default handling.
       }
       break; //for implementation of tap-hold Alternate Repeat Key
-    case M_TION: SEND_STRING(/*a*/"tion"); break; // pressing a then Alt Rep gives "ation"
-    case M_SION: SEND_STRING(/*s*/"ion"); break; //pressing s then Alt Rep gives "sion"
-    case M_TTHE: SEND_STRING(/*t*/"he"); break; //pressing t then Alt Rep gives "the"
-    case M_WHAT: SEND_STRING(/*w*/"hat"); break; //pressing w then Alt Rep gives "what"
-    case M_THE: SEND_STRING(/*space*/"the"); break; //pressing space then Alt Rep gives "the"
     //Oryx cases starts after this comment
     case ST_MACRO_0:
     if (record->event.pressed) {
