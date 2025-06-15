@@ -4,6 +4,7 @@
 #include "features/sentence_case.h" //custom feature
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
+#define MAGIC LT(2,KC_0)
 
 void housekeeping_task_user(void) {
   achordion_task();
@@ -42,30 +43,14 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-#define MAGIC LT(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
-#define DUAL_FUNC_0 LT(27, KC_F1)
-=======
-#define DUAL_FUNC_0 LT(9, KC_F12)
->>>>>>> origin/oryx
-=======
-#define DUAL_FUNC_0 LT(4, KC_F11)
->>>>>>> origin/oryx
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    DUAL_FUNC_0,    KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
+    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
     KC_TRANSPARENT, KC_Q,           KC_W,           ALL_T(KC_F),    KC_P,           KC_B,                                           KC_J,           KC_L,           ALL_T(KC_U),    KC_Y,           KC_SCLN,        KC_TRANSPARENT, 
-<<<<<<< HEAD
     KC_TRANSPARENT, LT(1,KC_A),     MT(MOD_LALT, KC_R),MT(MOD_LGUI, KC_S),MT(MOD_LSFT, KC_T),KC_G,                                           LT(4,KC_M),     MT(MOD_RSFT, KC_N),MT(MOD_RGUI, KC_E),MT(MOD_RALT, KC_I),LT(1,KC_O),     KC_QUOTE,       
     KC_TRANSPARENT, MT(MOD_LCTL, KC_Z),KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           LT(3,KC_H),     TD(DANCE_1),    KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_TRANSPARENT, 
                                                     KC_SPACE,       LT(2,KC_TAB),                                   QK_REP, MAGIC
-=======
-    KC_TRANSPARENT, LT(1, KC_A),    MT(MOD_LALT, KC_R),MT(MOD_LGUI, KC_S),MT(MOD_LSFT, KC_T),KC_G,                                           LT(4, KC_M),    MT(MOD_RSFT, KC_N),MT(MOD_RGUI, KC_E),MT(MOD_RALT, KC_I),LT(1, KC_O),    KC_TRANSPARENT, 
-    KC_TRANSPARENT, MT(MOD_LCTL, KC_Z),KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           LT(3, KC_H),    TD(DANCE_0),    KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_TRANSPARENT, 
-                                                    KC_SPACE,       LT(2, KC_TAB),                                  KC_TRANSPARENT, KC_TRANSPARENT
->>>>>>> origin/oryx
   ),
   [1] = LAYOUT_voyager(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
@@ -202,21 +187,6 @@ switch (keycode) {
     }
     break;
 
-    case DUAL_FUNC_0:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_EQUAL);
-        } else {
-          unregister_code16(KC_EQUAL);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_ESCAPE);
-        } else {
-          unregister_code16(KC_ESCAPE);
-        }  
-      }  
-      return false;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
