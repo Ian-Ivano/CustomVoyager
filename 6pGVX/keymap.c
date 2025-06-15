@@ -2,6 +2,7 @@
 #include "version.h"
 #include "features/achordion.h" //custom feature
 #include "features/sentence_case.h" //custom feature
+#include "features/custom_shift_keys.h"//custom feature
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 #define MAGIC LT(2,KC_0)
@@ -95,6 +96,15 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo3, KC_ENTER),
 };
 
+const custom_shift_key_t custom_shift_keys[] = {
+  {TD(DANCE_0), KC_QUOTE}, // Shift . is ?
+  {KC_SPACE, KC_ENTER}, // Shift , is !
+  //{KC_MINS, KC_EQL }, // Shift - is =
+  //{KC_COLN, KC_SCLN}, // Shift : is ; 
+};
+uint8_t NUM_CUSTOM_SHIFT_KEYS =
+    sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);//custom shift key codes ends here
+
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case LT(1,KC_A): return M_TN;
@@ -117,6 +127,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }//achordion implentation
   if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
+  if (!process_custom_shift_keys(keycode, record)) { return false; }//custom_shift_keys implementation
 
 switch (keycode) {
     case M_TN: 
