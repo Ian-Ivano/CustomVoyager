@@ -43,10 +43,14 @@ enum tap_dance_codes {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAGIC LT(2,KC_0) //for implementation of tap-hold Alternate Repeat Key
 #define DUAL_FUNC_0 LT(27, KC_F1)
 =======
 #define DUAL_FUNC_0 LT(9, KC_F12)
+>>>>>>> origin/oryx
+=======
+#define DUAL_FUNC_0 LT(4, KC_F11)
 >>>>>>> origin/oryx
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
