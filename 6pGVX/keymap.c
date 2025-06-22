@@ -16,7 +16,8 @@ enum custom_keycodes {
   M_SION,
   M_THE_1,
   M_WHAT,
-  M_THE_2,//personal custom_keycodes end in this line
+  M_THE_2,
+  M_NUM,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -111,7 +112,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case MT(MOD_LGUI, KC_S): return M_SION;
         case MT(MOD_LSFT, KC_T): return M_THE_1; 
         case KC_W: return M_WHAT; 
-        case KC_SPC: return M_THE_2; 
+        case KC_SPC: return M_THE_2;
+        case KC_0 ... KC_9: return M_NUM; 
 
     }
 
@@ -155,9 +157,9 @@ switch (keycode) {
         SEND_STRING(/*space*/"the");
     } 
     break; //pressing space then Alt Rep gives "the"
-    case KC_0:
+    case M_NUM:
     if(record->event.pressed){
-        SEND_STRING(SS_LSFT(SS_TAP(X_MINUS))SS_DELAY(100));
+        SEND_STRING(SS_LSFT(SS_TAP(X_MINUS)));
     }
     break; //pressing a number key followed by a magic key types an underscore
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
