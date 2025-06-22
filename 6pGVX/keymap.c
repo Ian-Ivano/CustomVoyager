@@ -113,7 +113,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case MT(MOD_LSFT, KC_T): return M_THE_1; 
         case KC_W: return M_WHAT; 
         case KC_SPC: return M_THE_2;
-        case KC_0 ... KC_9: return M_NUM; 
+        case KC_0...KC_9: return M_NUM; 
 
     }
 
@@ -159,7 +159,7 @@ switch (keycode) {
     break; //pressing space then Alt Rep gives "the"
     case M_NUM:
     if(record->event.pressed){
-        SEND_STRING(SS_LSFT(SS_TAP(X_MINUS)));
+        SEND_STRING(SS_TAP(X_UNDS));
     }
     break; //pressing a number key followed by a magic key types an underscore
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
