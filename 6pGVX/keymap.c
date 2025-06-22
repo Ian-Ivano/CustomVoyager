@@ -155,6 +155,11 @@ switch (keycode) {
         SEND_STRING(/*space*/"the");
     } 
     break; //pressing space then Alt Rep gives "the"
+    case KC_0 ... KC_9:
+    if(record->event.pressed){
+        SEND_STRING(SS_LSFT(SS_TAP(X_MINUS))SS_DELAY(100));
+    }
+    break; //pressing a number key followed by a magic key types an underscore
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
       if (record->tap.count) {  // On tap.
         alt_repeat_key_invoke(&record->event);  // Alternate Repeat the last key.
