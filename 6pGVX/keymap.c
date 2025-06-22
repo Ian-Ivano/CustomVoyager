@@ -155,7 +155,7 @@ switch (keycode) {
         SEND_STRING(/*space*/"the");
     } 
     break; //pressing space then Alt Rep gives "the"
-    case KC_0 ... KC_9:
+    case KC_0:
     if(record->event.pressed){
         SEND_STRING(SS_LSFT(SS_TAP(X_MINUS))SS_DELAY(100));
     }
