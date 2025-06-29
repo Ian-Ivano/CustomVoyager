@@ -159,6 +159,7 @@ switch (keycode) {
     case M_WHAT:
     if(record->event.pressed){
         SEND_STRING(/*w*/"hat");
+        tap_code16(KC_SPACE);//added 29.06.2025 to press space after "what" is typed
     } 
     break; //pressing w then Alt Rep gives "what"
     case M_THE_2:
