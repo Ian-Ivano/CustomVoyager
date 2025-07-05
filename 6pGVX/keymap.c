@@ -17,6 +17,7 @@ enum custom_keycodes {
   M_THE_1,
   M_WHAT,
   M_THE_2,
+  M_YOU,
   M_NUM,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
@@ -98,9 +99,9 @@ combo_t key_combos[COMBO_COUNT] = {
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
-  {TD(DANCE_0), KC_QUOTE}, // Shift . is ?
-  {KC_SPACE, KC_ENTER}, // Shift , is !
-  //{KC_MINS, KC_EQL }, // Shift - is =
+  {TD(DANCE_0), KC_QUOTE}, // Shift TD(DANCE_0) is '
+  {KC_SPACE, KC_ENTER}, // Shift ␣ is ↵
+  {KC_DOT, KC_EXLM }, // Shift . is !
   //{KC_COLN, KC_SCLN}, // Shift : is ; 
 };
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
@@ -111,7 +112,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case LT(1,KC_A): return M_TN;
         case MT(MOD_LGUI, KC_S): return M_SION;
         case MT(MOD_LSFT, KC_T): return M_THE_1; 
-        case KC_W: return M_WHAT; 
+        case KC_W: return M_WHAT;
+        case KC_Y: return M_YOU; 
         case KC_SPC: return M_THE_2;
         case KC_P0: return M_NUM;
         case KC_P1: return M_NUM;
@@ -167,6 +169,11 @@ switch (keycode) {
         SEND_STRING(/*space*/"the");
     } 
     break; //pressing space then Alt Rep gives "the"
+    case M_YOU:
+    if(record->event.pressed){
+        SEND_STRING(/*y*/"ou");
+    }
+    break; //pressing y then Alt Rep gives "you"
     case M_NUM:
     if(record->event.pressed){
         tap_code16(KC_UNDS);
