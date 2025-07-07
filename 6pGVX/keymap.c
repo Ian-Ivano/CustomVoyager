@@ -182,7 +182,7 @@ switch (keycode) {
     }
     case M_LOCK:
     if(record->event.pressed){
-        tap_code(C(G(KC_Q))); //locks the screen
+        SEND_STRING(SS_LCTL(SS_RGUI("q"))); //locks the screen
     }
     break; //pressing a number key followed by a magic key types an underscore
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
