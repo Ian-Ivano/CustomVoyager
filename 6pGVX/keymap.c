@@ -18,6 +18,7 @@ enum custom_keycodes {
   M_WHAT,
   M_THE_2,
   M_YOU,
+  M_LOCK,
   M_NUM,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
@@ -177,6 +178,10 @@ switch (keycode) {
     case M_NUM:
     if(record->event.pressed){
         tap_code16(KC_UNDS);
+    }
+    case M_LOCK:
+    if(record->event.pressed){
+        tap_code(C(G(KC_Q))); //locks the screen
     }
     break; //pressing a number key followed by a magic key types an underscore
     case MAGIC:  // 2nd layer on hold, Alternate Repeat Key on tap.
