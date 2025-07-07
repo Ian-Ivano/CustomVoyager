@@ -19,7 +19,7 @@ enum custom_keycodes {
   M_THE_2,
   M_YOU,
   M_LOCK,
-  M_NUM,//personal custom_keycodes end in this line
+  //M_NUM,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -31,6 +31,7 @@ enum custom_keycodes {
   ST_MACRO_4,
   ST_MACRO_5,
   ST_MACRO_6,
+  M_NUM,//changed position of M_NUM
 };
 
 
