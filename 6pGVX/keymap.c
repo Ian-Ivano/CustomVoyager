@@ -180,6 +180,7 @@ switch (keycode) {
     if(record->event.pressed){
         tap_code16(KC_UNDS);
     }
+    break;
     case M_LOCK:
     if(record->event.pressed){
         SEND_STRING(SS_LCTL(SS_RGUI("q"))); //locks the screen
