@@ -19,7 +19,7 @@ enum custom_keycodes {
   M_THE_2,
   M_YOU,
   M_LOCK,
-  //M_NUM,//personal custom_keycodes end in this line
+  M_NUM,//personal custom_keycodes end in this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -31,7 +31,6 @@ enum custom_keycodes {
   ST_MACRO_4,
   ST_MACRO_5,
   ST_MACRO_6,
-  M_NUM,//changed position of M_NUM
 };
 
 
@@ -118,17 +117,16 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_L: return M_LOCK;
         case KC_Y: return M_YOU; 
         case KC_SPC: return M_THE_2;
-        case KC_P1 ... KC_P0: return M_NUM;
-        //case KC_P0: return M_NUM;
-        //case KC_P1: return M_NUM;
-        //case KC_P2: return M_NUM;
-        //case KC_P3: return M_NUM;
-        //case KC_P4: return M_NUM;
-        //case KC_P5: return M_NUM;
-        //case KC_P6: return M_NUM;
-        //case KC_P7: return M_NUM;
-        //case KC_P8: return M_NUM;
-        //case KC_P9: return M_NUM; 
+        case KC_P0: return M_NUM;
+        case KC_P1: return M_NUM;
+        case KC_P2: return M_NUM;
+        case KC_P3: return M_NUM;
+        case KC_P4: return M_NUM;
+        case KC_P5: return M_NUM;
+        case KC_P6: return M_NUM;
+        case KC_P7: return M_NUM;
+        case KC_P8: return M_NUM;
+        case KC_P9: return M_NUM; 
 
     }
 
