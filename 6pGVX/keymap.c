@@ -114,6 +114,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case MT(MOD_LGUI, KC_S): return M_SION;
         case MT(MOD_LSFT, KC_T): return M_THE_1; 
         case KC_W: return M_WHAT;
+        case KC_L: return M_LOCK;
         case KC_Y: return M_YOU; 
         case KC_SPC: return M_THE_2;
         case KC_P0: return M_NUM;
