@@ -198,7 +198,8 @@ switch (keycode) {
     if (record->tap.count) { //on tap.
         repeat_key_invoke(&record->event);
         return false;
-    }   //for implementation of tap-hold Alternate Repeat Key
+    }
+    break;   //for implementation of tap-hold Alternate Repeat Key
     //Oryx cases starts after this comment
     case ST_MACRO_0:
     if (record->event.pressed) {
