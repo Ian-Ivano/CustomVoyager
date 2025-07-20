@@ -119,15 +119,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_Y: return M_YOU; 
         case KC_SPC: return M_THE_2;
         case KC_P1 ... KC_P0: return M_NUM;
-        //case KC_P1: return M_NUM;
-        //case KC_P2: return M_NUM;
-        //case KC_P3: return M_NUM;
-        //case KC_P4: return M_NUM;
-        //case KC_P5: return M_NUM;
-        //case KC_P6: return M_NUM;
-        //case KC_P7: return M_NUM;
-        //case KC_P8: return M_NUM;
-        //case KC_P9: return M_NUM; 
 
     }
 
@@ -200,6 +191,17 @@ switch (keycode) {
         return false;
     }
     break;   //for implementation of tap-hold Alternate Repeat Key
+    case KC_SPACE:// When the Repeat key follows Space, it behaves as one-shot shift
+      if (get_repeat_key_count() > 0) {
+        if (record->event.pressed) {
+          add_oneshot_mods(MOD_LSFT);
+          register_mods(MOD_LSFT);
+        } else {
+          unregister_mods(MOD_LSFT);
+        }
+        return false;
+      }
+      break;
     //Oryx cases starts after this comment
     case ST_MACRO_0:
     if (record->event.pressed) {
