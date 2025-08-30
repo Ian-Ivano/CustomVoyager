@@ -179,10 +179,10 @@ bool process_magic_key_2(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_W:
             SEND_STRING("hat");
             return false;
-        case KC_HOME_M:
+        case HOME_M:
             SEND_STRING("ent");
             return false;
-        case KC_HOME_N:
+        case HOME_N:
             SEND_STRING("ote:");
             return false;
         default:
@@ -195,10 +195,10 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_Y:
             SEND_STRING("ou'll");
             return false;
-        case KC_HOME_I:
+        case HOME_I:
             SEND_STRING("ng");
             return false;
-        case KC_HOME_T:
+        case HOME_T:
             SEND_STRING("ment");
             return false;
         case KC_P:
