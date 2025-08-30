@@ -140,8 +140,8 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 bool get_repeat_key_eligible_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
     switch (keycode) {
         // Ignore Custom Magic Keys
-        case C_MAG_2:
-        case C_MAG_3:
+        case MAGIC_2:
+        case MAGIC_3:
             return false;
         case KC_A ... KC_Z:
             if ((*remembered_mods & ~(MOD_MASK_SHIFT)) == 0) {
@@ -200,7 +200,7 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_T:
             SEND_STRING("ment");
             return false;
-        case: KC_P:
+        case KC_P:
             SEND_STRING("aulo Mkali");
             return false;
         case KC_SPC:
