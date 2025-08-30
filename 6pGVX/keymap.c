@@ -34,7 +34,7 @@ enum custom_keycodes {
   M_LOCK,
   M_NUM,
   MAGIC_2,
-  MAGIC_3//personal custom_keycodes end after this line
+  MAGIC_3,//personal custom_keycodes end after this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
