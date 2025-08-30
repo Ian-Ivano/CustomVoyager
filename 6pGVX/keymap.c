@@ -148,6 +148,7 @@ bool get_repeat_key_eligible_user(uint16_t keycode, keyrecord_t* record, uint8_t
                 *remembered_mods &= ~MOD_MASK_SHIFT;
             }
             break;
+
     }
 
     return true;
@@ -176,12 +177,12 @@ bool process_magic_key_2(uint16_t prev_keycode, uint8_t prev_mods){
             SEND_STRING("nd");
             return false;
         case KC_W:
-            SEND_STRING("what");
+            SEND_STRING("hat");
             return false;
-        case KC_M:
+        case KC_HOME_M:
             SEND_STRING("ent");
             return false;
-        case KC_N:
+        case KC_HOME_N:
             SEND_STRING("ote:");
             return false;
         default:
@@ -194,10 +195,10 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_Y:
             SEND_STRING("ou'll");
             return false;
-        case KC_I:
+        case KC_HOME_I:
             SEND_STRING("ng");
             return false;
-        case KC_T:
+        case KC_HOME_T:
             SEND_STRING("ment");
             return false;
         case KC_P:
