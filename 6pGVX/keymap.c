@@ -218,9 +218,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 switch (keycode) {
     case MAGIC_2:
-        return process_magic_key_2(get_repeat_key_keycode(), get_repeat_key_mods());
+        return process_magic_key_2(get_last_keycode(), get_last_mods());
     case MAGIC_3:
-        return process_magic_key_3(get_repeat_key_keycode(), get_repeat_key_mods());
+        return process_magic_key_3(get_last_keycode(), get_last_mods());
     case M_TN: 
     if(record->event.pressed){
         SEND_STRING(/*a*/"tion");
