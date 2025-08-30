@@ -7,6 +7,18 @@
 #define ML_SAFE_RANGE SAFE_RANGE
 #define MAGIC LT(2,KC_0)//for tap-hold Alternate Repeat Key
 #define REPEAT LT(4,KC_1)//for tap-hold REPEAT key 19.07.2025
+//aliases for left Home Row Keys
+#define HOME_A LT(1,KC_A)
+#define HOME_R MT(MOD_LALT, KC_R)
+#define HOME_S MT(MOD_LGUI, KC_S)
+#define HOME_T MT(MOD_LSFT, KC_T)
+//aliases for right Home Row keys
+#define HOME_M LT(4,KC_M)
+#define HOME_N MT(MOD_RSFT, KC_N)
+#define HOME_E MT(MOD_RGUI, KC_E)
+#define HOME_I MT(MOD_RALT, KC_I)
+#define HOME_O LT(1,KC_O)
+
 
 void housekeeping_task_user(void) {
   achordion_task();
@@ -20,7 +32,9 @@ enum custom_keycodes {
   M_THE_2,
   M_YOU,
   M_LOCK,
-  M_NUM,//personal custom_keycodes end in this line
+  M_NUM,
+  MAGIC_2,
+  MAGIC_3//personal custom_keycodes end after this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -53,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
     KC_TRANSPARENT, KC_Q,           KC_W,           ALL_T(KC_F),    KC_P,           KC_B,                                           KC_J,           KC_L,           ALL_T(KC_U),    KC_Y,           KC_SCLN,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, LT(1,KC_A),     MT(MOD_LALT, KC_R),MT(MOD_LGUI, KC_S),MT(MOD_LSFT, KC_T),KC_G,                                           LT(4,KC_M),     MT(MOD_RSFT, KC_N),MT(MOD_RGUI, KC_E),MT(MOD_RALT, KC_I),LT(1,KC_O),KC_TRANSPARENT,       
+    KC_TRANSPARENT, HOME_A,     HOME_R,HOME_S,HOME_T,KC_G,                                           HOME_M,     HOME_N,HOME_E,HOME_I,HOME_O,KC_TRANSPARENT,       
     KC_TRANSPARENT, MT(MOD_LCTL, KC_Z),KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           LT(3,KC_H),     TD(DANCE_0),    KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_TRANSPARENT, 
                                                     KC_SPACE,       LT(2,KC_TAB),                                   REPEAT, MAGIC
   ),
@@ -88,16 +102,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-const uint16_t PROGMEM combo0[] = { MT(MOD_LSFT, KC_T), MT(MOD_RSFT, KC_N), COMBO_END};
+const uint16_t PROGMEM combo0[] = { HOME_T, HOME_N, COMBO_END};
 const uint16_t PROGMEM combo1[] = { ALL_T(KC_F), KC_P, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_Y, ALL_T(KC_U), COMBO_END};
-const uint16_t PROGMEM combo3[] = { MT(MOD_RSFT, KC_N), MT(MOD_RGUI, KC_E), COMBO_END};
+const uint16_t PROGMEM combo3[] = { HOME_N, HOME_E, COMBO_END};
+const uint16_t PROGMEM combo4[] = { HOME_E, HOME_I, COMBO_END};
+const uint16_t PROGMEM combo5[] = { HOME_R, HOME_S, COMBO_END};
+const uint16_t PROGMEM combo6[] = { HOME_S, HOME_T, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_UNDS),
     COMBO(combo1, CW_TOGG),
     COMBO(combo2, KC_BSPC),
-    COMBO(combo3, KC_ENTER),
+    COMBO(combo3, MAGIC_2),
+    COMBO(combo4, MAGIC_3),
+    COMBO(combo5, MAGIC_2),
+    COMBO(combo6, MAGIC_3),
 };
 
 const custom_shift_key_t custom_shift_keys[] = {
@@ -109,21 +129,6 @@ const custom_shift_key_t custom_shift_keys[] = {
 uint8_t NUM_CUSTOM_SHIFT_KEYS =
     sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);//custom shift key codes ends here
 
-uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case LT(1,KC_A): return M_TN;
-        case MT(MOD_LGUI, KC_S): return M_SION;
-        case MT(MOD_LSFT, KC_T): return M_THE_1; 
-        case KC_W: return M_WHAT;
-        case KC_Q: return M_LOCK;
-        case KC_Y: return M_YOU; 
-        case KC_SPC: return M_THE_2;
-        case KC_P1 ... KC_P0: return M_NUM;
-
-    }
-
-    return KC_TRNS;
-}//for implementaion of tap-hold Alternate Repeat key
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
@@ -132,12 +137,90 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
   return true;
 }//for implementation of tap-hold Alternate Repeat Key
 
+bool get_repeat_key_eligible_user(uint16_t keycode, keyrecord_t* record, uint8_t* remembered_mods) {
+    switch (keycode) {
+        // Ignore Custom Magic Keys
+        case C_MAG_2:
+        case C_MAG_3:
+            return false;
+        case KC_A ... KC_Z:
+            if ((*remembered_mods & ~(MOD_MASK_SHIFT)) == 0) {
+                *remembered_mods &= ~MOD_MASK_SHIFT;
+            }
+            break;
+    }
+
+    return true;
+}//added on 30.08.2025
+
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case HOME_A: return M_TN;
+        case HOME_S: return M_SION;
+        case HOME_T: return M_THE_1; 
+        case KC_W: return M_WHAT;
+        case KC_Q: return M_LOCK;
+        case KC_Y: return M_YOU; 
+        case KC_SPC: return M_THE_2;
+        case KC_P1 ... KC_P0:
+        case KC_1 ... KC_0: return M_NUM;
+
+    }
+
+    return KC_TRNS;
+}//for implementaion of tap-hold Alternate Repeat key
+
+bool process_magic_key_2(uint16_t prev_keycode, uint8_t prev_mods){
+    switch (prev_keycode){
+        case HOME_A:
+            SEND_STRING("nd");
+            return false;
+        case KC_W:
+            SEND_STRING("what");
+            return false;
+        case KC_M:
+            SEND_STRING("ent");
+            return false;
+        case KC_N:
+            SEND_STRING("ote:");
+            return false;
+        default:
+            return false;
+    }
+}
+
+bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
+    switch (prev_keycode){
+        case KC_Y:
+            SEND_STRING("ou'll");
+            return false;
+        case KC_I:
+            SEND_STRING("ng");
+            return false;
+        case KC_T:
+            SEND_STRING("ment");
+            return false;
+        case: KC_P:
+            SEND_STRING("aulo Mkali");
+            return false;
+        case KC_SPC:
+            SEND_STRING("and");
+            return false;
+        default:
+            return false;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }//achordion implentation
   if (!process_sentence_case(keycode, record)) { return false; }//sentence_case implementation
   if (!process_custom_shift_keys(keycode, record)) { return false; }//custom_shift_keys implementation
 
 switch (keycode) {
+    case MAGIC_2:
+        return process_magic_key_2(get_repeat_key_keycode(), get_repeat_key_mods());
+    case MAGIC_3:
+        return process_magic_key_3(get_repeat_key_keycode(), get_repeat_key_mods());
     case M_TN: 
     if(record->event.pressed){
         SEND_STRING(/*a*/"tion");
