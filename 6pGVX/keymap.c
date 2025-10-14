@@ -188,10 +188,10 @@ bool process_magic_key_2(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_V:
             SEND_STRING("ent wall");
             return false;
-        case KC_HOME_T:
+        case HOME_T:
             SEND_STRING("hrough");
             return false;
-        case KC_HOME_O:
+        case HOME_O:
             SEND_STRING("DS");
             return false;
         default:
@@ -223,7 +223,7 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_V:
             SEND_STRING("ent door");
             return false;
-        case KC_HOME_O:
+        case HOME_O:
             SEND_STRING("DN");
             return false;
         case KC_D:
