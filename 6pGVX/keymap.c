@@ -207,7 +207,8 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_SPC:
             SEND_STRING("and");
             return false;
-        case HOME_E:case ALL_T(KC_U);
+        case HOME_E:
+        case ALL_T(KC_U):  
             SEND_STRING("x");
             return false;
         default:
