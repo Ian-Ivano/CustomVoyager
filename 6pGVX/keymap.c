@@ -314,9 +314,7 @@ switch (keycode) {
         if(record->event.pressed){
         SEND_STRING("/s");
         if(get_repeat_key_count()<-1){
-        SEND_STRING(SS_TAP(X_LEFT) SS_DELAY(100));
-        SEND_STRING(SS_TAP(X_LEFT) SS_DELAY(100));
-        SEND_STRING("3");
+        SEND_STRING(SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_3));
         }
       }
       return false;
