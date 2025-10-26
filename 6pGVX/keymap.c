@@ -34,7 +34,8 @@ enum custom_keycodes {
   M_LOCK,
   M_NUM,
   MAGIC_2,
-  MAGIC_3,//personal custom_keycodes end after this line
+  MAGIC_3,
+  M_AIR,//personal custom_keycodes end after this line
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -165,6 +166,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_SPC: return M_THE_2;
         case KC_P1 ... KC_P0:
         case KC_1 ... KC_0: return M_NUM;
+        case KC_M: return M_AIR;
 
     }
 
@@ -307,7 +309,7 @@ switch (keycode) {
         return false;
       }
       break;
-    case KC_M:
+    case M_AIR:
       if(get_repeat_key_count()>1){
         if(record->event.pressed){
             SEND_STRING("/s");
