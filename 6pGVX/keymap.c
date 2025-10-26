@@ -313,6 +313,11 @@ switch (keycode) {
       if (get_repeat_key_count()<0){
         if(record->event.pressed){
         SEND_STRING("/s");
+        if(get_repeat_key_count()<-1){
+        SS_TAP(X_LEFT);
+        SS_TAP(X_LEFT);
+        SEND_STRING("3");
+        }
       }
       return false;
       }
