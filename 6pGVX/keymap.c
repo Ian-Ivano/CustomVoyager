@@ -313,7 +313,7 @@ switch (keycode) {
             SEND_STRING("/s");
         }else {
         if(get_repeat_key_count()<-1){
-            SENT_STRING("3/s");
+            SEND_STRING("3/s");
         }
         }
         return false;
