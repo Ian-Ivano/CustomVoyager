@@ -310,15 +310,11 @@ switch (keycode) {
       }
       break;
     case M_AIR:
-      if(get_repeat_key_count()>1){
+      if (get_repeat_key_count()<0){
         if(record->event.pressed){
-            SEND_STRING("/s");
-        }else if (get_repeat_key_count()<0){
-        if(record->event.pressed){
-            SEND_STRING("3/s");
-        }
-        }
-        return false;
+        SEND_STRING("/s");
+      }
+      return false;
       }
       break;
     //Oryx cases starts after this comment
