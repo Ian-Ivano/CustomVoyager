@@ -311,7 +311,7 @@ switch (keycode) {
       if(get_repeat_key_count()>1){
         if(record->event.pressed){
             SEND_STRING("/s");
-        }else if (get_repeat_count()<0){
+        }else if (get_repeat_key_count()<0){
         if(record->event.pressed){
             SEND_STRING("3/s");
         }
