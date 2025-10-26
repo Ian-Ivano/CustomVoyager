@@ -216,7 +216,6 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_SPC:
             SEND_STRING("and");
             return false;
-        case HOME_E:
         case ALL_T(KC_U):  
             SEND_STRING("x");
             return false;
@@ -304,6 +303,18 @@ switch (keycode) {
           register_mods(MOD_LSFT);
         } else {
           unregister_mods(MOD_LSFT);
+        }
+        return false;
+      }
+      break;
+    case KC_M:
+      if(get_repeat_key_count()==-1){
+        if(record->event.pressed){
+            SEND_STRING("/s");
+        }else {
+        if(get_repeat_key_count()<-1){
+            SENT_STRING("3/s");
+        }
         }
         return false;
       }
