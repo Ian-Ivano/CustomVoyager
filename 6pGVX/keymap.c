@@ -310,10 +310,10 @@ switch (keycode) {
       }
       break;
     case M_AIR:
-        if(get_repeat_key_count()==-2){
-        SEND_STRING(SS_LGUI(SS_TAP(X_LEFT)) SS_DELAY(100) SS_TAP(X_3));
+        if(get_repeat_key_count()>0){
+        SEND_STRING("3/s");
       }
-      if (get_repeat_key_count()==-1){
+      if (get_repeat_key_count()<0){
         if(record->event.pressed){
         SEND_STRING("/s");
         }
