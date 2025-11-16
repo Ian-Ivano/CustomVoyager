@@ -26,7 +26,7 @@ void housekeeping_task_user(void) {
 
 enum custom_keycodes {
   M_TN = ML_SAFE_RANGE,
-  M_SION,q
+  M_SION,
   M_THE_1,
   M_WHAT,
   M_THE_2,
