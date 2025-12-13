@@ -35,8 +35,6 @@ enum custom_keycodes {
   M_NUM,
   MAGIC_2,
   MAGIC_3,
-  M_OU,
-  M_UO,
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -167,8 +165,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_SPC: return M_THE_2;
         case KC_P1 ... KC_P0:
         case KC_1 ... KC_0: return M_NUM;
-        case HOME_O: return M_OU;
-        case HYPER_U: return M_UO;
+        case HOME_O: return HYPER_U;
+        case HYPER_U: return HOME_O;
 
     }
 
@@ -310,16 +308,6 @@ switch (keycode) {
         }
         return false;
       }
-      break;
-    case M_OU:
-    if (record->event.pressed){
-        SEND_STRING("u");
-    }
-      break;
-    case M_UO:
-    if (record->event.pressed){
-        SEND_STRING("o");
-    }
       break;
     //Oryx cases starts after this comment
     case ST_MACRO_0:
