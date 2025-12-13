@@ -311,12 +311,12 @@ switch (keycode) {
         return false;
       }
       break;
-    case HOME_O:
+    case M_OU:
     if (record->event.pressed){
         SEND_STRING("u");
     }
       break;
-    case HYPER_U:
+    case M_UO:
     if (record->event.pressed){
         SEND_STRING("o");
     }
