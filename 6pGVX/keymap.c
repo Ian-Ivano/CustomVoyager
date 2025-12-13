@@ -18,8 +18,8 @@
 #define HOME_E MT(MOD_RGUI, KC_E)
 #define HOME_I MT(MOD_RALT, KC_I)
 #define HOME_O LT(1,KC_O)
-
-
+#define HYPER_F ALL_T(KC_F)    
+#define HYPER_U ALL_T(KC_U)    
 void housekeeping_task_user(void) {
   achordion_task();
 }
@@ -35,7 +35,8 @@ enum custom_keycodes {
   M_NUM,
   MAGIC_2,
   MAGIC_3,
-  M_AIR,//personal custom_keycodes end after this line
+  M_OU,
+  M_UO,
   RGB_SLD,
   HSV_0_255_255,
   HSV_74_255_255,
@@ -67,7 +68,7 @@ enum tap_dance_codes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
-    KC_TRANSPARENT, KC_Q,           KC_W,           ALL_T(KC_F),    KC_P,           KC_B,                                           KC_J,           KC_L,           ALL_T(KC_U),    KC_Y,           KC_SCLN,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_Q,           KC_W,           HYPER_F,    KC_P,           KC_B,                                           KC_J,           KC_L,           HYPER_U,    KC_Y,           KC_SCLN,        KC_TRANSPARENT, 
     KC_TRANSPARENT, HOME_A,     HOME_R,HOME_S,HOME_T,KC_G,                                           HOME_M,     HOME_N,HOME_E,HOME_I,HOME_O,KC_TRANSPARENT,       
     KC_TRANSPARENT, MT(MOD_LCTL, KC_Z),KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           LT(3,KC_H),     TD(DANCE_0),    KC_DOT,         MT(MOD_RCTL, KC_SLASH),KC_TRANSPARENT, 
                                                     KC_SPACE,       LT(2,KC_TAB),                                   REPEAT, MAGIC
@@ -104,8 +105,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 const uint16_t PROGMEM combo0[] = { HOME_T, HOME_N, COMBO_END};
-const uint16_t PROGMEM combo1[] = { ALL_T(KC_F), KC_P, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_Y, ALL_T(KC_U), COMBO_END};
+const uint16_t PROGMEM combo1[] = { HYPER_F, KC_P, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_Y, HYPER_U, COMBO_END};
 const uint16_t PROGMEM combo3[] = { HOME_N, HOME_E, COMBO_END};
 const uint16_t PROGMEM combo4[] = { HOME_E, HOME_I, COMBO_END};
 const uint16_t PROGMEM combo5[] = { HOME_R, HOME_S, COMBO_END};
@@ -166,7 +167,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_SPC: return M_THE_2;
         case KC_P1 ... KC_P0:
         case KC_1 ... KC_0: return M_NUM;
-        case HOME_M: return M_AIR;
+        case HOME_O: return M_OU;
+        case HYPER_U: return M_UO;
 
     }
 
@@ -218,7 +220,7 @@ bool process_magic_key_3(uint16_t prev_keycode, uint8_t prev_mods){
         case KC_SPC:
             SEND_STRING("and");
             return false;
-        case ALL_T(KC_U):  
+        case HYPER_U:  
             SEND_STRING("x");
             return false;
         case KC_V:
@@ -309,18 +311,15 @@ switch (keycode) {
         return false;
       }
       break;
-    case M_AIR:
-        if(get_repeat_key_count()>0){
-         if(record->event.pressed){ 
-        SEND_STRING("3/s");
+    case HOME_O:
+    if (record->event.pressed){
+        SEND_STRING("u");
     }
-      }
-      if (get_repeat_key_count()<0){
-        if(record->event.pressed){
-        SEND_STRING("/s");
-        }
-      return false;
-      }
+      break;
+    case HYPER_U:
+    if (record->event.pressed){
+        SEND_STRING("o");
+    }
       break;
     //Oryx cases starts after this comment
     case ST_MACRO_0:
